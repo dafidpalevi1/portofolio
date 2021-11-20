@@ -16,6 +16,11 @@
   transition: all 0.2s linear;
 }
 
+footer {
+  font-size: 16px;
+  color: #eee;
+}
+
 *::selection {
   background: var(--yellow);
   color: #333;
@@ -179,7 +184,7 @@ header .navbar ul li a:hover {
 }
 
 .home p {
-  font-size: 2rem;
+  font-size: 2.6rem;
   color: rgb(255, 255, 255);
   padding: 1rem 0;
 }
@@ -288,6 +293,11 @@ header .navbar ul li a:hover {
   color: #fff;
   background: var(--yellow);
 }
+.portfolio .box-container h2 {
+  text-align: center;
+  font-size: 18px;
+  color: #eee;
+}
 
 .portfolio .box-container {
   display: flex;
@@ -298,8 +308,8 @@ header .navbar ul li a:hover {
 }
 
 .portfolio .box-container .box {
-  height: 20rem;
-  width: 26rem;
+  height: 176px;
+  width: 229px;
   border-radius: 1rem;
   margin: 2rem;
   overflow: hidden;
