@@ -1,256 +1,760 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dafid SEO</title>
-
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="style.css">
-
+    <title>Dafid SEO | Front End Developer</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --secondary: #4a44c6;
+            --dark: #2a2a4a;
+            --light: #f5f5f7;
+            --accent: #ff6584;
+            --text: #333;
+            --text-light: #777;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            outline: none;
+            border: none;
+        }
+        
+        html {
+            font-size: 62.5%;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        section {
+            min-height: 100vh;
+            padding: 0 9%;
+            padding-top: 7.5rem;
+            padding-bottom: 2rem;
+        }
+        
+        .heading {
+            text-align: center;
+            font-size: 4rem;
+            padding-bottom: 1rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .heading span {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 1rem 2.5rem;
+            border-radius: 5rem;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-size: 1.7rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: var(--shadow);
+            padding: 2rem 9%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+        
+        header .user {
+            display: flex;
+            align-items: center;
+        }
+        
+        header .user img {
+            height: 5rem;
+            width: 5rem;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1.5rem;
+            border: 2px solid var(--primary);
+        }
+        
+        header .user h3 {
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        
+        header .user p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        header .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        header .navbar ul li {
+            margin-left: 2.5rem;
+        }
+        
+        header .navbar ul li a {
+            font-size: 1.7rem;
+            color: var(--dark);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        header .navbar ul li a:hover {
+            color: var(--primary);
+        }
+        
+        #menu {
+            font-size: 2.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            display: none;
+        }
+        
+        /* Home Section */
+        .home {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,192C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .home h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .home h1 {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .home h1 span {
+            color: var(--accent);
+        }
+        
+        .home p {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 70rem;
+            position: relative;
+        }
+        
+        /* About Section */
+        .about .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about .info {
+            flex: 1 1 40rem;
+        }
+        
+        .about .info h3 {
+            font-size: 2rem;
+            margin: 1rem 0;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .about .info h3 span {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .about .counter {
+            flex: 1 1 40rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .about .counter .box {
+            flex: 1 1 15rem;
+            background: white;
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .about .counter .box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .about .counter .box span {
+            font-size: 4rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .about .counter .box h3 {
+            font-size: 1.7rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+        
+        /* Experience Section */
+        .education .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .education .box {
+            background: white;
+            border-radius: 1rem;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .education .box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .education .box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+        }
+        
+        .education .box i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .education .box span {
+            font-size: 1.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5rem;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .education .box h3 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .education .box p {
+            font-size: 1.6rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+        
+        /* Portfolio Section */
+        .portfolio .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .portfolio .box {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .portfolio .box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .portfolio .box h2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(108, 99, 255, 0.9);
+            color: white;
+            padding: 1rem;
+            font-size: 2rem;
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .portfolio .box img {
+            width: 100%;
+            height: 25rem;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .portfolio .box:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Contact Section */
+        .contact .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .contact .content {
+            flex: 1 1 30rem;
+        }
+        
+        .contact .title {
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+        
+        .contact .info h3 {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact .info h3 i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-right: 1.5rem;
+            width: 4rem;
+        }
+        
+        .contact form {
+            flex: 1 1 45rem;
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact form .box {
+            width: 100%;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            background: #f9f9f9;
+            border-radius: 0.5rem;
+            border: 1px solid #eee;
+        }
+        
+        .contact form .message {
+            resize: none;
+            height: 15rem;
+        }
+        
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            font-size: 1.6rem;
+            color: var(--text-light);
+            border-top: 1px solid #eee;
+        }
+        
+        /* Scroll Top Button */
+        .top {
+            position: fixed;
+            bottom: 3rem;
+            right: 3rem;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .top img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            html {
+                font-size: 55%;
+            }
+            
+            section {
+                padding: 0 5%;
+                padding-top: 7.5rem;
+            }
+            
+            header {
+                padding: 2rem 5%;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            #menu {
+                display: block;
+            }
+            
+            header .navbar {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1rem 2rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transform: scaleY(0);
+                transform-origin: top;
+                opacity: 0;
+                transition: var(--transition);
+            }
+            
+            header .navbar.active {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+            
+            header .navbar ul {
+                flex-direction: column;
+            }
+            
+            header .navbar ul li {
+                margin: 1rem 0;
+            }
+            
+            .home h1 {
+                font-size: 4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .home h1 {
+                font-size: 3.5rem;
+            }
+            
+            .heading {
+                font-size: 3.5rem;
+            }
+            
+            .about .row {
+                flex-direction: column;
+            }
+            
+            .contact .row {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 450px) {
+            html {
+                font-size: 50%;
+            }
+            
+            .home h1 {
+                font-size: 3rem;
+            }
+            
+            .heading {
+                font-size: 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
     
-<!-- header section starts  -->
-
+<!-- Header Section -->
 <header>
-
     <div class="user">
-        <img src="dafid.jpg" alt="">
+        <img src="dafid.jpg" alt="Dafid SEO">
         <h3 class="name">Dafid SEO</h3>
-        <p class="post">front end developer</p>
+        <p class="post">Front End Developer</p>
     </div>
 
     <nav class="navbar">
         <ul>
-            <li><a href="#home">home</a></li>
-            <li><a href="#about">tentang Saya</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Tentang Saya</a></li>
             <li><a href="#education">Pengalaman</a></li>
-            <li><a href="#portfolio">portofolio</a></li>
-            <li><a href="#contact">contact</a></li>
+            <li><a href="#portfolio">Portofolio</a></li>
+            <li><a href="#contact">Kontak</a></li>
         </ul>
     </nav>
 
+    <div id="menu" class="fas fa-bars"></div>
 </header>
 
-<!-- header section ends -->
-
-<div id="menu" class="fas fa-bars"></div>
-
-<!-- home section starts  -->
-
+<!-- Home Section -->
 <section class="home" id="home">
-
     <h3>Hello !!!</h3>
-    <h1>I'M <span>Dafid SEO</span></h1>
-    <p>Saya Adalah Seorang Programmer Yang Berasal Dari Kota Sibolga, Sumatera Utara, Selamat Datang di Portofolio Saya Ini. Kalian Dapat Melihat Semua Project Yang Telah Saya Kerjakan Disini.
-    </p>
-</br>
-<p>Menyelesaikan setiap permasalahan dengan coding adalah suatu kesenangan tersendiri bagi seorang programmer. Dan kamu harus belajar untuk bersabar dalam menemukan setiap permasalahan yang kamu hadapi.
-    </p>
-</br>
+    <h1>Saya <span>Dafid SEO</span></h1>
+    <p>Saya adalah seorang programmer yang berasal dari Kota Sibolga, Sumatera Utara. Selamat datang di portofolio saya ini. Kalian dapat melihat semua project yang telah saya kerjakan disini.</p>
+    <p>Menyelesaikan setiap permasalahan dengan coding adalah suatu kesenangan tersendiri bagi seorang programmer. Dan kamu harus belajar untuk bersabar dalam menemukan setiap permasalahan yang kamu hadapi.</p>
     <a href="#about"><button class="btn">Tentang Saya <i class="fas fa-user"></i></button></a>
-
 </section>
 
-<!-- home section ends -->
-
-<!-- about section starts  -->
-
+<!-- About Section -->
 <section class="about" id="about">
-
-<h1 class="heading"> <span>Tentang</span> saya </h1>
-
-<div class="row">
-
-    <div class="info">
-        <h3> <span> Name : </span> Dafid SEO </h3>
-        <h3> <span> Job : </span> front end developer </h3>
-        <a href="#"><button class="btn"> Download CV <i class="fas fa-download"></i> </button></a>
-    </div>
-
-    <div class="counter">
-
-        <div class="box">
-            <span>8 </span>
-            <h3>Tahun Pengalaman</h3>
-        </div>
-
-        <div class="box">
-            <span>5+</span>
-            <h3>Pekerjaan Selesai</h3>
-        </div>
-
-        <div class="box">
-            <span>10+</span>
-            <h3>Klien Saya</h3>
-        </div>
-
-        <div class="box">
-            <span>2</span>
-            <h3>Search Engine Optimation</h3>
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-<!-- about section ends -->
-
-<!-- education section starts  -->
-
-<section class="education" id="education">
-
-<h1 class="heading"> Pengalaman <span>Saya</span> </h1>
-
-<div class="box-container">
-
-    <div class="box">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        <span>2013</span>
-        <h3>Website Animenonton</h3>
-        <p>Pada Tahun 2013 Lalu Saya Membuat Website Anime dan Disitu Pertama Kali Saya Terjun Dalam Dunia Website dan Saya Belajar Kepada Teman Saya!</p>
-    </div>
-
-    <div class="box">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        <span>2017</span>
-        <h3>Website Dewatutor</h3>
-        <p>Pada Tahun 2017 Lalu Saya Bersama Teman Saya Membangun Website Tutorial Pertama Kalinya Agar Membantu Orang Lain Untuk Melihat Tutorial Yang Ada di Website Kami!</p>
-    </div>
-
-    <div class="box">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        <span>2018</span>
-        <h3>Website BosDrama</h3>
-        <p>Kami Juga Sempat Membuat Website Streaming Drama Korea Pada Tahun 2018 dan Sempat Memiliki Banyak Pengunjung Pada Waktu Itu!</p>
-    </div>
-
-    <div class="box">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        <span>2019</span>
-        <h3>Website Metro26</h3>
-        <p>Saya Sempat Menjadi Seoarang IT Pada Website Metro26, Website Media Online Yang Ada di Kota Tempat Saya Tinggal.</p>
-    </div>
-
-    <div class="box">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        <span>2020</span>
-        <h3>Website Kantongberita</h3>
-        <p>Ada Lumayan Banyak Website Yang Saya Buat Pada Tahun 2020 Lalu.</p>
-    </div>
-
-    <div class="box">
-        <i class="fa fa-check" aria-hidden="true"></i>
-        <span>2021</span>
-        <h3>front end development</h3>
-        <p>Untuk Saat Ini Saya Sangat Senang Menjadi Seorang Freelance Front end development.</p>
-    </div>
-
-</div>
-
-</section>
-
-<!-- education section ends -->
-
-<!-- portfolio section starts  -->
-
-<section class="portfolio" id="portfolio">
-
-<h1 class="heading"> my <span>portofolio</span> </h1>
-
-<div class="box-container">
-
-    <div class="box">
-        <h2>DafidPalevi</h2>
-        <a href='https://dafidpalevi.netlify.app/' title='dafidpalevi'><img src='images/dafidpaleviku.png' title='DafidPalevi' border='no' /></a>
-    </div>
-
-    <div class="box">
-        <h2>Nadaindo</h2>
-        <a href='https://nadaindo.web.id' title='Nadaindo'><img src='images/nadaindoku.png' title='Nadaindo' border='no' /></a>
-    </div>
-
-    <div class="box">
-        <h2>Dewatutor</h2>
-        <a href='https://dewatutor.net' title='Dewatutor'><img src='images/dewatutor.png' title='Dewatutor' border='no' /></a>
-    </div>
-
-    <div class="box">
-        <h2>Kantongberita</h2>
-        <a href='https://kantongberita.com' title='Kantongberita'><img src='images/kantongberitaku.png' title='Kantongberita' border='no' /></a>
-    </div>
-
-    <div class="box">
-        <h2>Sneakersgood</h2>
-        <a href='https://sneakersgood.com' title='Sneakersgood'><img src='images/sneakers.png' title='Sneakersgood' border='no' /></a>
-    </div>
-    <div class="box">
-        <h2>Vidcenzo</h2>
-        <a href='https://vidcenzo.000webhostapp.com/' title='Vidcenzo'><img src='images/vidcenzoku.png' title='Vidcenzo' border='no' /></a>
-    </div>
-
-    <div class="box">
-        <h2>Stopwatch</h2>
-        <a href='https://timerdafidpalevi.netlify.app/' title='Stopwatch & Countdown Timer'><img src='images/stopwatchku.png' title='Stopwatch & Countdown Timer' border='no' /></a>
-    </div>
-
-</div>
-
-</section>
-
-<section class="contact" id="contact">
-
-<h1 class="heading"> <span>contact</span> me </h1>
-
-<div class="row">
-
-    <div class="content">
-
-        <h3 class="title">contact info</h3>
-
+    <h1 class="heading"> <span>Tentang</span> Saya </h1>
+    
+    <div class="row">
         <div class="info">
-            <h3> <i class="fas fa-envelope"></i> brodafid@gmail.com </h3>
-            <h3> <i class="fas fa-phone"></i> +62895-6380-66066 </h3>
-            <h3> <i class="fas fa-map-marker-alt"></i> Sibolga,Indonesia </h3>
+            <h3><span>Nama :</span> Dafid SEO</h3>
+            <h3><span>Pekerjaan :</span> Front End Developer</h3>
+            <h3><span>Keahlian :</span> HTML, CSS, JavaScript, SEO</h3>
+            <h3><span>Bahasa :</span> Indonesia, Inggris</h3>
+            <a href="#"><button class="btn">Download CV <i class="fas fa-download"></i></button></a>
         </div>
-
+        
+        <div class="counter">
+            <div class="box">
+                <span>8</span>
+                <h3>Tahun Pengalaman</h3>
+            </div>
+            
+            <div class="box">
+                <span>50+</span>
+                <h3>Project Selesai</h3>
+            </div>
+            
+            <div class="box">
+                <span>30+</span>
+                <h3>Klien Puas</h3>
+            </div>
+            
+            <div class="box">
+                <span>10+</span>
+                <h3>Penghargaan</h3>
+            </div>
+        </div>
     </div>
-
-    <form action="">
-
-        <input type="text" placeholder="name" class="box">
-        <input type="email" placeholder="email" class="box">
-        <input type="text" placeholder="project" class="box">
-        <textarea name="" id="" cols="30" rows="10" class="box message" placeholder="message"></textarea>
-        <button type="submit" class="btn"> send <i class="fas fa-paper-plane"></i> </button>
-
-    </form>
-
-    <footer>©CopyRight 2024 All right reserved. Design By: Dafid SEO <span style="color: #ff0000;">&#9829;</span></footer>
-
-</div>
-
 </section>
 
-<!-- contact section ends -->
+<!-- Experience Section -->
+<section class="education" id="education">
+    <h1 class="heading"> Pengalaman <span>Saya</span> </h1>
+    
+    <div class="box-container">
+        <div class="box">
+            <i class="fas fa-check"></i>
+            <span>2013</span>
+            <h3>Website Animenonton</h3>
+            <p>Pada tahun 2013 lalu saya membuat website anime dan disitu pertama kali saya terjun dalam dunia website dan saya belajar kepada teman saya!</p>
+        </div>
+        
+        <div class="box">
+            <i class="fas fa-check"></i>
+            <span>2017</span>
+            <h3>Website Dewatutor</h3>
+            <p>Pada tahun 2017 lalu saya bersama teman saya membangun website tutorial pertama kalinya agar membantu orang lain untuk melihat tutorial yang ada di website kami!</p>
+        </div>
+        
+        <div class="box">
+            <i class="fas fa-check"></i>
+            <span>2018</span>
+            <h3>Website BosDrama</h3>
+            <p>Kami juga sempat membuat website streaming drama Korea pada tahun 2018 dan sempat memiliki banyak pengunjung pada waktu itu!</p>
+        </div>
+        
+        <div class="box">
+            <i class="fas fa-check"></i>
+            <span>2019</span>
+            <h3>Website Metro26</h3>
+            <p>Saya sempat menjadi seorang IT pada website Metro26, website media online yang ada di kota tempat saya tinggal.</p>
+        </div>
+        
+        <div class="box">
+            <i class="fas fa-check"></i>
+            <span>2020</span>
+            <h3>Website Kantongberita</h3>
+            <p>Ada lumayan banyak website yang saya buat pada tahun 2020 lalu.</p>
+        </div>
+        
+        <div class="box">
+            <i class="fas fa-check"></i>
+            <span>2021-Sekarang</span>
+            <h3>Front End Development</h3>
+            <p>Untuk saat ini saya sangat senang menjadi seorang freelance Front End Development dan terus mengembangkan skill saya.</p>
+        </div>
+    </div>
+</section>
 
+<!-- Portfolio Section -->
+<section class="portfolio" id="portfolio">
+    <h1 class="heading"> Portofolio <span>Saya</span> </h1>
+    
+    <div class="box-container">
+        <div class="box">
+            <h2>DafidPalevi</h2>
+            <a href='https://dafidpalevi.netlify.app/' title='dafidpalevi' target="_blank">
+                <img src='https://via.placeholder.com/400x250/6c63ff/ffffff?text=DafidPalevi' alt='DafidPalevi'>
+            </a>
+        </div>
+        
+        <div class="box">
+            <h2>Nadaindo</h2>
+            <a href='https://nadaindo.web.id' title='Nadaindo' target="_blank">
+                <img src='https://via.placeholder.com/400x250/4a44c6/ffffff?text=Nadaindo' alt='Nadaindo'>
+            </a>
+        </div>
+        
+        <div class="box">
+            <h2>Dewatutor</h2>
+            <a href='https://dewatutor.net' title='Dewatutor' target="_blank">
+                <img src='https://via.placeholder.com/400x250/ff6584/ffffff?text=Dewatutor' alt='Dewatutor'>
+            </a>
+        </div>
+        
+        <div class="box">
+            <h2>Kantongberita</h2>
+            <a href='https://kantongberita.com' title='Kantongberita' target="_blank">
+                <img src='https://via.placeholder.com/400x250/2a2a4a/ffffff?text=Kantongberita' alt='Kantongberita'>
+            </a>
+        </div>
+        
+        <div class="box">
+            <h2>Sneakersgood</h2>
+            <a href='https://sneakersgood.com' title='Sneakersgood' target="_blank">
+                <img src='https://via.placeholder.com/400x250/6c63ff/ffffff?text=Sneakersgood' alt='Sneakersgood'>
+            </a>
+        </div>
+        
+        <div class="box">
+            <h2>Vidcenzo</h2>
+            <a href='https://vidcenzo.000webhostapp.com/' title='Vidcenzo' target="_blank">
+                <img src='https://via.placeholder.com/400x250/4a44c6/ffffff?text=Vidcenzo' alt='Vidcenzo'>
+            </a>
+        </div>
+    </div>
+</section>
 
-<!-- scroll top button  -->
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <h1 class="heading"> Hubungi <span>Saya</span> </h1>
+    
+    <div class="row">
+        <div class="content">
+            <h3 class="title">Info Kontak</h3>
+            
+            <div class="info">
+                <h3><i class="fas fa-envelope"></i> brodafid@gmail.com</h3>
+                <h3><i class="fas fa-phone"></i> +62895-6380-66066</h3>
+                <h3><i class="fas fa-map-marker-alt"></i> Sibolga, Indonesia</h3>
+            </div>
+        </div>
+        
+        <form action="">
+            <input type="text" placeholder="Nama" class="box" required>
+            <input type="email" placeholder="Email" class="box" required>
+            <input type="text" placeholder="Subyek" class="box" required>
+            <textarea cols="30" rows="10" class="box message" placeholder="Pesan" required></textarea>
+            <button type="submit" class="btn">Kirim <i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
+    
+    <footer>&copy; CopyRight 2024 All right reserved. Design By: Dafid SEO <span style="color: #ff0000;">&#9829;</span></footer>
+</section>
 
+<!-- Scroll Top Button -->
 <a href="#home" class="top">
-    <img src="images/scroll-top-img.png" alt="">
+    <i class="fas fa-chevron-up"></i>
 </a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script src="script.js"></script>
-
+<script>
+    $(document).ready(function(){
+        $('#menu').click(function(){
+            $(this).toggleClass('fa-times');
+            $('.navbar').toggleClass('active');
+        });
+        
+        $(window).on('scroll load', function(){
+            $('#menu').removeClass('fa-times');
+            $('.navbar').removeClass('active');
+            
+            if($(window).scrollTop() > 0){
+                $('.top').show();
+            }else{
+                $('.top').hide();
+            }
+        });
+        
+        $('a[href*="#"]').on('click', function(e){
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop : $($(this).attr('href')).offset().top,
+            }, 500, 'linear');
+        });
+    });
+</script>
 
 </body>
 </html>
