@@ -291,6 +291,7 @@
         .home h1 .dynamic-text {
             color: var(--accent);
             position: relative;
+            min-width: 200px;
         }
         
         .home h1 .dynamic-text::after {
@@ -687,6 +688,10 @@
             .home h1 {
                 font-size: 4rem;
             }
+            
+            .home h1 .dynamic-text {
+                min-width: 180px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -695,6 +700,10 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.5rem;
+            }
+            
+            .home h1 .dynamic-text {
+                min-width: 160px;
             }
             
             .heading {
@@ -717,6 +726,10 @@
             
             .home h1 {
                 font-size: 3rem;
+            }
+            
+            .home h1 .dynamic-text {
+                min-width: 140px;
             }
             
             .heading {
@@ -878,21 +891,21 @@
     <div class="box-container">
         <div class="box" data-aos="zoom-in" data-aos-delay="100">
             <h2>DafidPalevi</h2>
-            <a href='https://dafidpalevi.netlify.app/' title='dafidpalevi' target="_blank">
+            <a href='https://dafidseo.netlify.app/' title='dafidpalevi' target="_blank">
                 <img src='images/dafidpaleviku.png' alt='DafidPalevi - Portfolio Website'>
             </a>
         </div>
         
         <div class="box" data-aos="zoom-in" data-aos-delay="200">
             <h2>Nadaindo</h2>
-            <a href='https://nadaindo.web.id' title='Nadaindo' target="_blank">
+            <a href='#' title='Nadaindo' target="_blank">
                 <img src='images/nadaindoku.png' alt='Nadaindo - Business Website'>
             </a>
         </div>
         
         <div class="box" data-aos="zoom-in" data-aos-delay="300">
             <h2>Dewatutor</h2>
-            <a href='https://dewatutor.net' title='Dewatutor' target="_blank">
+            <a href='#' title='Dewatutor' target="_blank">
                 <img src='images/dewatutor.png' alt='Dewatutor - Tutorial Website'>
             </a>
         </div>
@@ -906,14 +919,14 @@
         
         <div class="box" data-aos="zoom-in" data-aos-delay="500">
             <h2>Sneakersgood</h2>
-            <a href='https://sneakersgood.com' title='Sneakersgood' target="_blank">
+            <a href='#' title='Sneakersgood' target="_blank">
                 <img src='images/sneakers.png' alt='Sneakersgood - E-commerce'>
             </a>
         </div>
         
         <div class="box" data-aos="zoom-in" data-aos-delay="600">
             <h2>Vidcenzo</h2>
-            <a href='https://vidcenzo.000webhostapp.com/' title='Vidcenzo' target="_blank">
+            <a href='#' title='Vidcenzo' target="_blank">
                 <img src='images/vidcenzoku.png' alt='Vidcenzo - Video Platform'>
             </a>
         </div>
@@ -954,7 +967,7 @@
 
 <!-- Footer -->
 <footer>
-    <p>&copy; CopyRight 2024 All right reserved. Design By: Dafid SEO <span style="color: #ff0000;">&#9829;</span></p>
+    <p>&copy; CopyRight 2025 All right reserved. Design By: Dafid SEO <span style="color: #ff0000;">&#9829;</span></p>
 </footer>
 
 <!-- Scroll Top Button -->
@@ -972,72 +985,44 @@
         duration: 1000,
         once: true
     });
-    
-    // Typewriter Effect
-    class TypeWriter {
-        constructor(txtElement, words, wait = 3000) {
-            this.txtElement = txtElement;
-            this.words = words;
-            this.txt = '';
-            this.wordIndex = 0;
-            this.wait = parseInt(wait, 10);
-            this.type();
-            this.isDeleting = false;
+
+    // Infinite Typewriter Effect
+    function startInfiniteTypewriter() {
+        const text = "Dafid SEO";
+        const typewriterElement = document.getElementById("typewriter-text");
+        let i = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        function type() {
+            const currentText = typewriterElement.innerHTML;
+            
+            if (!isDeleting && i < text.length) {
+                // Mengetik
+                typewriterElement.innerHTML = text.substring(0, i + 1);
+                i++;
+                typingSpeed = 100;
+            } else if (isDeleting && i > 0) {
+                // Menghapus
+                typewriterElement.innerHTML = text.substring(0, i - 1);
+                i--;
+                typingSpeed = 50;
+            }
+            
+            // Ubah arah
+            if (i === text.length) {
+                isDeleting = true;
+                typingSpeed = 1000; // Jeda sebelum menghapus
+            } else if (i === 0 && isDeleting) {
+                isDeleting = false;
+                typingSpeed = 500; // Jeda sebelum mengetik ulang
+            }
+            
+            setTimeout(type, typingSpeed);
         }
-
-        type() {
-            // Current index of word
-            const current = this.wordIndex % this.words.length;
-            // Get full text of current word
-            const fullTxt = this.words[current];
-
-            // Check if deleting
-            if (this.isDeleting) {
-                // Remove char
-                this.txt = fullTxt.substring(0, this.txt.length - 1);
-            } else {
-                // Add char
-                this.txt = fullTxt.substring(0, this.txt.length + 1);
-            }
-
-            // Insert txt into element
-            this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
-
-            // Initial Type Speed
-            let typeSpeed = 100;
-
-            if (this.isDeleting) {
-                typeSpeed /= 2;
-            }
-
-            // If word is complete
-            if (!this.isDeleting && this.txt === fullTxt) {
-                // Make pause at end
-                typeSpeed = this.wait;
-                // Set delete to true
-                this.isDeleting = true;
-            } else if (this.isDeleting && this.txt === '') {
-                this.isDeleting = false;
-                // Move to next word
-                this.wordIndex++;
-                // Pause before start typing
-                typeSpeed = 500;
-            }
-
-            setTimeout(() => this.type(), typeSpeed);
-        }
-    }
-
-    // Init On DOM Load
-    document.addEventListener('DOMContentLoaded', init);
-
-    // Init App
-    function init() {
-        const txtElement = document.getElementById('typewriter-text');
-        const words = JSON.parse(txtElement.getAttribute('data-words'));
-        const wait = txtElement.getAttribute('data-wait');
-        // Init TypeWriter
-        new TypeWriter(txtElement, words, wait);
+        
+        // Mulai animasi
+        type();
     }
 
     $(document).ready(function(){
@@ -1066,21 +1051,8 @@
             }, 500, 'linear');
         });
         
-        // Simple typewriter effect for Dafid SEO
-        const text = "Dafid SEO";
-        let i = 0;
-        const speed = 100;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typewriter-text").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, speed);
-            }
-        }
-        
-        // Start typewriter after page loads
-        setTimeout(typeWriter, 1000);
+        // Start infinite typewriter effect
+        setTimeout(startInfiniteTypewriter, 1000);
     });
 </script>
 
