@@ -12,6 +12,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
@@ -124,6 +127,59 @@
             background: var(--secondary);
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(108, 99, 255, 0.3);
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Pulse Animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Text Glitch Animation */
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            40% {
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                transform: translate(2px, 2px);
+            }
+            80% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch:hover {
+            animation: glitch 0.5s linear;
+            color: var(--accent);
         }
         
         /* Header Styles */
@@ -288,6 +344,48 @@
         .social-icons a:hover {
             background: var(--accent);
             transform: translateY(-5px);
+        }
+        
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
         }
         
         /* About Section */
@@ -547,6 +645,44 @@
             transform: translateY(-5px);
         }
         
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--accent);
+            white-space: nowrap;
+            margin: 0;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent); }
+        }
+        
+        /* Text Shine Effect */
+        @keyframes shine {
+            0% {
+                background-position: -100% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        
+        .shine {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shine 3s infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
         /* Responsive Design */
         @media (max-width: 1200px) {
             html {
@@ -646,7 +782,7 @@
 <!-- Header Section -->
 <header>
     <div class="user">
-        <img src="https://via.placeholder.com/150/6c63ff/ffffff?text=DS" alt="Dafid SEO">
+        <img src="dafid.jpg" alt="Dafid SEO">
         <div>
             <h3 class="name">Dafid SEO</h3>
             <p class="post">Front End Developer</p>
@@ -668,12 +804,18 @@
 
 <!-- Home Section -->
 <section class="home" id="home">
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    
     <div class="home-content">
         <h3>Hello !!!</h3>
-        <h1>Saya <span>Dafid SEO</span></h1>
+        <h1>Saya <span class="typewriter glitch shine">Dafid SEO</span></h1>
         <p>Saya adalah seorang programmer yang berasal dari Kota Sibolga, Sumatera Utara. Selamat datang di portofolio saya ini. Kalian dapat melihat semua project yang telah saya kerjakan disini.</p>
         <p>Menyelesaikan setiap permasalahan dengan coding adalah suatu kesenangan tersendiri bagi seorang programmer. Dan kamu harus belajar untuk bersabar dalam menemukan setiap permasalahan yang kamu hadapi.</p>
-        <a href="#about"><button class="btn">Tentang Saya <i class="fas fa-user"></i></button></a>
+        <a href="#about"><button class="btn pulse">Tentang Saya <i class="fas fa-user"></i></button></a>
         
         <div class="social-icons">
             <a href="https://www.tiktok.com/@dafidseo" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
@@ -686,10 +828,10 @@
 
 <!-- About Section -->
 <section class="about" id="about">
-    <h1 class="heading"> <span>Tentang</span> Saya </h1>
+    <h1 class="heading" data-aos="fade-up"> <span>Tentang</span> Saya </h1>
     
     <div class="row">
-        <div class="info">
+        <div class="info" data-aos="fade-right">
             <h3><span>Nama :</span> Dafid SEO</h3>
             <h3><span>Pekerjaan :</span> Front End Developer & Digital Creator</h3>
             <h3><span>Keahlian :</span> HTML, CSS, JavaScript, React, SEO</h3>
@@ -698,23 +840,23 @@
             <a href="#"><button class="btn">Download CV <i class="fas fa-download"></i></button></a>
         </div>
         
-        <div class="counter">
-            <div class="box">
+        <div class="counter" data-aos="fade-left">
+            <div class="box floating">
                 <span>8+</span>
                 <h3>Tahun Pengalaman</h3>
             </div>
             
-            <div class="box">
+            <div class="box floating" style="animation-delay: 0.5s;">
                 <span>50+</span>
                 <h3>Project Selesai</h3>
             </div>
             
-            <div class="box">
+            <div class="box floating" style="animation-delay: 1s;">
                 <span>30+</span>
                 <h3>Klien Puas</h3>
             </div>
             
-            <div class="box">
+            <div class="box floating" style="animation-delay: 1.5s;">
                 <span>10+</span>
                 <h3>Penghargaan</h3>
             </div>
@@ -724,45 +866,45 @@
 
 <!-- Experience Section -->
 <section class="education" id="education">
-    <h1 class="heading"> Pengalaman <span>Saya</span> </h1>
+    <h1 class="heading" data-aos="fade-up"> Pengalaman <span>Saya</span> </h1>
     
     <div class="box-container">
-        <div class="box">
+        <div class="box" data-aos="fade-up" data-aos-delay="100">
             <i class="fas fa-check"></i>
             <span>2013</span>
             <h3>Website Animenonton</h3>
             <p>Pada tahun 2013 lalu saya membuat website anime dan disitu pertama kali saya terjun dalam dunia website dan saya belajar kepada teman saya!</p>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="fade-up" data-aos-delay="200">
             <i class="fas fa-check"></i>
             <span>2017</span>
             <h3>Website Dewatutor</h3>
             <p>Pada tahun 2017 lalu saya bersama teman saya membangun website tutorial pertama kalinya agar membantu orang lain untuk melihat tutorial yang ada di website kami!</p>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="fade-up" data-aos-delay="300">
             <i class="fas fa-check"></i>
             <span>2018</span>
             <h3>Website BosDrama</h3>
             <p>Kami juga sempat membuat website streaming drama Korea pada tahun 2018 dan sempat memiliki banyak pengunjung pada waktu itu!</p>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="fade-up" data-aos-delay="400">
             <i class="fas fa-check"></i>
             <span>2019</span>
             <h3>Website Metro26</h3>
             <p>Saya sempat menjadi seorang IT pada website Metro26, website media online yang ada di kota tempat saya tinggal.</p>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="fade-up" data-aos-delay="500">
             <i class="fas fa-check"></i>
             <span>2020</span>
             <h3>Website Kantongberita</h3>
             <p>Ada lumayan banyak website yang saya buat pada tahun 2020 lalu.</p>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="fade-up" data-aos-delay="600">
             <i class="fas fa-check"></i>
             <span>2021-Sekarang</span>
             <h3>Front End Development</h3>
@@ -773,48 +915,48 @@
 
 <!-- Portfolio Section -->
 <section class="portfolio" id="portfolio">
-    <h1 class="heading"> Portofolio <span>Saya</span> </h1>
+    <h1 class="heading" data-aos="fade-up"> Portofolio <span>Saya</span> </h1>
     
     <div class="box-container">
-        <div class="box">
+        <div class="box" data-aos="zoom-in" data-aos-delay="100">
             <h2>DafidPalevi</h2>
             <a href='https://dafidpalevi.netlify.app/' title='dafidpalevi' target="_blank">
-                <img src='https://via.placeholder.com/400x250/6c63ff/ffffff?text=DafidPalevi' alt='DafidPalevi'>
+                <img src='images/dafidpaleviku.png' alt='DafidPalevi - Portfolio Website'>
             </a>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="zoom-in" data-aos-delay="200">
             <h2>Nadaindo</h2>
             <a href='https://nadaindo.web.id' title='Nadaindo' target="_blank">
-                <img src='https://via.placeholder.com/400x250/4a44c6/ffffff?text=Nadaindo' alt='Nadaindo'>
+                <img src='images/nadaindoku.png' alt='Nadaindo - Business Website'>
             </a>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="zoom-in" data-aos-delay="300">
             <h2>Dewatutor</h2>
             <a href='https://dewatutor.net' title='Dewatutor' target="_blank">
-                <img src='https://via.placeholder.com/400x250/ff6584/ffffff?text=Dewatutor' alt='Dewatutor'>
+                <img src='images/dewatutor.png' alt='Dewatutor - Tutorial Website'>
             </a>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="zoom-in" data-aos-delay="400">
             <h2>Kantongberita</h2>
             <a href='https://kantongberita.com' title='Kantongberita' target="_blank">
-                <img src='https://via.placeholder.com/400x250/2a2a4a/ffffff?text=Kantongberita' alt='Kantongberita'>
+                <img src='images/kantongberitaku.png' alt='Kantongberita - News Portal'>
             </a>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="zoom-in" data-aos-delay="500">
             <h2>Sneakersgood</h2>
             <a href='https://sneakersgood.com' title='Sneakersgood' target="_blank">
-                <img src='https://via.placeholder.com/400x250/6c63ff/ffffff?text=Sneakersgood' alt='Sneakersgood'>
+                <img src='images/sneakers.png' alt='Sneakersgood - E-commerce'>
             </a>
         </div>
         
-        <div class="box">
+        <div class="box" data-aos="zoom-in" data-aos-delay="600">
             <h2>Vidcenzo</h2>
             <a href='https://vidcenzo.000webhostapp.com/' title='Vidcenzo' target="_blank">
-                <img src='https://via.placeholder.com/400x250/4a44c6/ffffff?text=Vidcenzo' alt='Vidcenzo'>
+                <img src='images/vidcenzoku.png' alt='Vidcenzo - Video Platform'>
             </a>
         </div>
     </div>
@@ -822,15 +964,15 @@
 
 <!-- Contact Section -->
 <section class="contact" id="contact">
-    <h1 class="heading"> Hubungi <span>Saya</span> </h1>
+    <h1 class="heading" data-aos="fade-up"> Hubungi <span>Saya</span> </h1>
     
     <div class="row">
-        <div class="content">
+        <div class="content" data-aos="fade-right">
             <h3 class="title">Info Kontak</h3>
             
             <div class="info">
                 <h3><i class="fas fa-envelope"></i> brodafid@gmail.com</h3>
-                <h3><i class="fas fa-phone"></i> +6282164889300</h3>
+                <h3><i class="fas fa-phone"></i> +62895-6380-66066</h3>
                 <h3><i class="fas fa-map-marker-alt"></i> Sibolga, Indonesia</h3>
             </div>
             
@@ -842,7 +984,7 @@
             </div>
         </div>
         
-        <form action="">
+        <form action="" data-aos="fade-left">
             <input type="text" placeholder="Nama" class="box" required>
             <input type="email" placeholder="Email" class="box" required>
             <input type="text" placeholder="Subyek" class="box" required>
@@ -854,7 +996,7 @@
 
 <!-- Footer -->
 <footer>
-    <p>&copy; CopyRight 2025 All right reserved. Design By: Dafid SEO <span style="color: #ff0000;">&#9829;</span></p>
+    <p>&copy; CopyRight 2024 All right reserved. Design By: Dafid SEO <span style="color: #ff0000;">&#9829;</span></p>
 </footer>
 
 <!-- Scroll Top Button -->
@@ -862,9 +1004,17 @@
     <i class="fas fa-chevron-up"></i>
 </a>
 
+<!-- Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
 <script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+    
     $(document).ready(function(){
         $('#menu').click(function(){
             $(this).toggleClass('fa-times');
@@ -889,6 +1039,13 @@
             $('html, body').animate({
                 scrollTop : $($(this).attr('href')).offset().top,
             }, 500, 'linear');
+        });
+        
+        // Add glitch effect on hover for Dafid SEO text
+        $('.glitch').hover(function(){
+            $(this).addClass('glitch-effect');
+        }, function(){
+            $(this).removeClass('glitch-effect');
         });
     });
 </script>
