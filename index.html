@@ -3,13 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dafid SEO | Front End Developer</title>
+    <title>Dafid SEO | Front End Developer & Digital Creator</title>
+    <meta name="description" content="Portofolio Dafid SEO - Front End Developer, Digital Creator & Pengelola VIP Agency dengan pengalaman 8+ tahun dalam pengembangan web.">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dafid SEO",
+      "url": "https://dafidseo.com",
+      "sameAs": [
+        "https://www.tiktok.com/@dafidseo",
+        "https://www.instagram.com/dafidseo",
+        "https://www.youtube.com/@dafidseo"
+      ],
+      "jobTitle": "Kreator Digital & Pengelola VIP Agency",
+      "description": "Front End Developer dengan pengalaman 8+ tahun dalam pengembangan web dan SEO",
+      "knowsAbout": ["Front End Development", "SEO", "Web Design", "Digital Marketing"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sibolga",
+        "addressRegion": "Sumatera Utara",
+        "addressCountry": "Indonesia"
+      },
+      "email": "brodafid@gmail.com",
+      "telephone": "+62895-6380-66066"
+    }
+    </script>
     
     <style>
         :root {
@@ -37,6 +64,7 @@
         html {
             font-size: 62.5%;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         
         body {
@@ -59,6 +87,19 @@
             color: var(--dark);
             text-transform: uppercase;
             letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
         }
         
         .heading span {
@@ -91,13 +132,20 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
             padding: 2rem 9%;
             display: flex;
             align-items: center;
             justify-content: space-between;
             z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.sticky {
+            padding: 1.5rem 9%;
+            background: rgba(255, 255, 255, 0.98);
         }
         
         header .user {
@@ -138,10 +186,26 @@
             color: var(--dark);
             transition: var(--transition);
             font-weight: 500;
+            position: relative;
+        }
+        
+        header .navbar ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
         }
         
         header .navbar ul li a:hover {
             color: var(--primary);
+        }
+        
+        header .navbar ul li a:hover::after {
+            width: 100%;
         }
         
         #menu {
@@ -175,16 +239,21 @@
             background-position: center;
         }
         
+        .home-content {
+            position: relative;
+            z-index: 1;
+            max-width: 70rem;
+        }
+        
         .home h3 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            position: relative;
         }
         
         .home h1 {
             font-size: 5rem;
             margin-bottom: 2rem;
-            position: relative;
+            line-height: 1.2;
         }
         
         .home h1 span {
@@ -195,8 +264,30 @@
             font-size: 1.8rem;
             line-height: 1.6;
             margin-bottom: 2rem;
-            max-width: 70rem;
-            position: relative;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4.5rem;
+            height: 4.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: white;
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
         }
         
         /* About Section */
@@ -408,6 +499,12 @@
             background: #f9f9f9;
             border-radius: 0.5rem;
             border: 1px solid #eee;
+            transition: var(--transition);
+        }
+        
+        .contact form .box:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
         }
         
         .contact form .message {
@@ -432,13 +529,22 @@
             right: 3rem;
             z-index: 1000;
             display: none;
-        }
-        
-        .top img {
             width: 5rem;
             height: 5rem;
+            background: var(--primary);
+            color: white;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .top:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
         }
         
         /* Responsive Design */
@@ -525,6 +631,13 @@
             .heading {
                 font-size: 3rem;
             }
+            
+            .top {
+                bottom: 2rem;
+                right: 2rem;
+                width: 4.5rem;
+                height: 4.5rem;
+            }
         }
     </style>
 </head>
@@ -533,9 +646,11 @@
 <!-- Header Section -->
 <header>
     <div class="user">
-        <img src="dafid.jpg" alt="Dafid SEO">
-        <h3 class="name">Dafid SEO</h3>
-        <p class="post">Front End Developer</p>
+        <img src="https://via.placeholder.com/150/6c63ff/ffffff?text=DS" alt="Dafid SEO">
+        <div>
+            <h3 class="name">Dafid SEO</h3>
+            <p class="post">Front End Developer</p>
+        </div>
     </div>
 
     <nav class="navbar">
@@ -553,11 +668,20 @@
 
 <!-- Home Section -->
 <section class="home" id="home">
-    <h3>Hello !!!</h3>
-    <h1>Saya <span>Dafid SEO</span></h1>
-    <p>Saya adalah seorang programmer yang berasal dari Kota Sibolga, Sumatera Utara. Selamat datang di portofolio saya ini. Kalian dapat melihat semua project yang telah saya kerjakan disini.</p>
-    <p>Menyelesaikan setiap permasalahan dengan coding adalah suatu kesenangan tersendiri bagi seorang programmer. Dan kamu harus belajar untuk bersabar dalam menemukan setiap permasalahan yang kamu hadapi.</p>
-    <a href="#about"><button class="btn">Tentang Saya <i class="fas fa-user"></i></button></a>
+    <div class="home-content">
+        <h3>Hello !!!</h3>
+        <h1>Saya <span>Dafid SEO</span></h1>
+        <p>Saya adalah seorang programmer yang berasal dari Kota Sibolga, Sumatera Utara. Selamat datang di portofolio saya ini. Kalian dapat melihat semua project yang telah saya kerjakan disini.</p>
+        <p>Menyelesaikan setiap permasalahan dengan coding adalah suatu kesenangan tersendiri bagi seorang programmer. Dan kamu harus belajar untuk bersabar dalam menemukan setiap permasalahan yang kamu hadapi.</p>
+        <a href="#about"><button class="btn">Tentang Saya <i class="fas fa-user"></i></button></a>
+        
+        <div class="social-icons">
+            <a href="https://www.tiktok.com/@dafidseo" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/dafidseo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@dafidseo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://github.com/dafidseo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
 </section>
 
 <!-- About Section -->
@@ -567,15 +691,16 @@
     <div class="row">
         <div class="info">
             <h3><span>Nama :</span> Dafid SEO</h3>
-            <h3><span>Pekerjaan :</span> Front End Developer</h3>
-            <h3><span>Keahlian :</span> HTML, CSS, JavaScript, SEO</h3>
+            <h3><span>Pekerjaan :</span> Front End Developer & Digital Creator</h3>
+            <h3><span>Keahlian :</span> HTML, CSS, JavaScript, React, SEO</h3>
             <h3><span>Bahasa :</span> Indonesia, Inggris</h3>
+            <h3><span>Pengalaman :</span> 8+ Tahun</h3>
             <a href="#"><button class="btn">Download CV <i class="fas fa-download"></i></button></a>
         </div>
         
         <div class="counter">
             <div class="box">
-                <span>8</span>
+                <span>8+</span>
                 <h3>Tahun Pengalaman</h3>
             </div>
             
@@ -705,8 +830,15 @@
             
             <div class="info">
                 <h3><i class="fas fa-envelope"></i> brodafid@gmail.com</h3>
-                <h3><i class="fas fa-phone"></i> +62895-6380-66066</h3>
+                <h3><i class="fas fa-phone"></i> +6282164889300</h3>
                 <h3><i class="fas fa-map-marker-alt"></i> Sibolga, Indonesia</h3>
+            </div>
+            
+            <div class="social-icons">
+                <a href="https://www.tiktok.com/@dafidseo" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/dafidseo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@dafidseo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://github.com/dafidseo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
         </div>
         
@@ -718,9 +850,12 @@
             <button type="submit" class="btn">Kirim <i class="fas fa-paper-plane"></i></button>
         </form>
     </div>
-    
-    <footer>&copy; CopyRight 2024 All right reserved. Design By: Dafid SEO <span style="color: #ff0000;">&#9829;</span></footer>
 </section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; CopyRight 2025 All right reserved. Design By: Dafid SEO <span style="color: #ff0000;">&#9829;</span></p>
+</footer>
 
 <!-- Scroll Top Button -->
 <a href="#home" class="top">
@@ -741,8 +876,10 @@
             $('.navbar').removeClass('active');
             
             if($(window).scrollTop() > 0){
+                $('header').addClass('sticky');
                 $('.top').show();
             }else{
+                $('header').removeClass('sticky');
                 $('.top').hide();
             }
         });
