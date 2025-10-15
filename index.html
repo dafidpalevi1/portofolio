@@ -150,38 +150,6 @@
             animation: pulse 2s infinite;
         }
         
-        /* Text Glitch Animation */
-        @keyframes glitch {
-            0% {
-                transform: translate(0);
-            }
-            20% {
-                transform: translate(-2px, 2px);
-            }
-            40% {
-                transform: translate(-2px, -2px);
-            }
-            60% {
-                transform: translate(2px, 2px);
-            }
-            80% {
-                transform: translate(2px, -2px);
-            }
-            100% {
-                transform: translate(0);
-            }
-        }
-        
-        .glitch {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .glitch:hover {
-            animation: glitch 0.5s linear;
-            color: var(--accent);
-        }
-        
         /* Header Styles */
         header {
             position: fixed;
@@ -310,10 +278,32 @@
             font-size: 5rem;
             margin-bottom: 2rem;
             line-height: 1.2;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         
-        .home h1 span {
+        .home h1 .static-text {
+            color: white;
+        }
+        
+        .home h1 .dynamic-text {
             color: var(--accent);
+            position: relative;
+        }
+        
+        .home h1 .dynamic-text::after {
+            content: '|';
+            position: absolute;
+            right: -8px;
+            color: var(--accent);
+            animation: blink 0.7s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
         
         .home p {
@@ -645,44 +635,6 @@
             transform: translateY(-5px);
         }
         
-        /* Typewriter Effect */
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid var(--accent);
-            white-space: nowrap;
-            margin: 0;
-            letter-spacing: .15em;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--accent); }
-        }
-        
-        /* Text Shine Effect */
-        @keyframes shine {
-            0% {
-                background-position: -100% 0;
-            }
-            100% {
-                background-position: 200% 0;
-            }
-        }
-        
-        .shine {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            background-size: 200% 100%;
-            animation: shine 3s infinite;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
         /* Responsive Design */
         @media (max-width: 1200px) {
             html {
@@ -740,6 +692,9 @@
         @media (max-width: 768px) {
             .home h1 {
                 font-size: 3.5rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
             
             .heading {
@@ -812,7 +767,10 @@
     
     <div class="home-content">
         <h3>Hello !!!</h3>
-        <h1>Saya <span class="typewriter glitch shine">Dafid SEO</span></h1>
+        <h1>
+            <span class="static-text">Saya</span>
+            <span class="dynamic-text" id="typewriter-text"></span>
+        </h1>
         <p>Saya adalah seorang programmer yang berasal dari Kota Sibolga, Sumatera Utara. Selamat datang di portofolio saya ini. Kalian dapat melihat semua project yang telah saya kerjakan disini.</p>
         <p>Menyelesaikan setiap permasalahan dengan coding adalah suatu kesenangan tersendiri bagi seorang programmer. Dan kamu harus belajar untuk bersabar dalam menemukan setiap permasalahan yang kamu hadapi.</p>
         <a href="#about"><button class="btn pulse">Tentang Saya <i class="fas fa-user"></i></button></a>
@@ -1015,6 +973,73 @@
         once: true
     });
     
+    // Typewriter Effect
+    class TypeWriter {
+        constructor(txtElement, words, wait = 3000) {
+            this.txtElement = txtElement;
+            this.words = words;
+            this.txt = '';
+            this.wordIndex = 0;
+            this.wait = parseInt(wait, 10);
+            this.type();
+            this.isDeleting = false;
+        }
+
+        type() {
+            // Current index of word
+            const current = this.wordIndex % this.words.length;
+            // Get full text of current word
+            const fullTxt = this.words[current];
+
+            // Check if deleting
+            if (this.isDeleting) {
+                // Remove char
+                this.txt = fullTxt.substring(0, this.txt.length - 1);
+            } else {
+                // Add char
+                this.txt = fullTxt.substring(0, this.txt.length + 1);
+            }
+
+            // Insert txt into element
+            this.txtElement.innerHTML = `<span class="txt">${this.txt}</span>`;
+
+            // Initial Type Speed
+            let typeSpeed = 100;
+
+            if (this.isDeleting) {
+                typeSpeed /= 2;
+            }
+
+            // If word is complete
+            if (!this.isDeleting && this.txt === fullTxt) {
+                // Make pause at end
+                typeSpeed = this.wait;
+                // Set delete to true
+                this.isDeleting = true;
+            } else if (this.isDeleting && this.txt === '') {
+                this.isDeleting = false;
+                // Move to next word
+                this.wordIndex++;
+                // Pause before start typing
+                typeSpeed = 500;
+            }
+
+            setTimeout(() => this.type(), typeSpeed);
+        }
+    }
+
+    // Init On DOM Load
+    document.addEventListener('DOMContentLoaded', init);
+
+    // Init App
+    function init() {
+        const txtElement = document.getElementById('typewriter-text');
+        const words = JSON.parse(txtElement.getAttribute('data-words'));
+        const wait = txtElement.getAttribute('data-wait');
+        // Init TypeWriter
+        new TypeWriter(txtElement, words, wait);
+    }
+
     $(document).ready(function(){
         $('#menu').click(function(){
             $(this).toggleClass('fa-times');
@@ -1041,12 +1066,21 @@
             }, 500, 'linear');
         });
         
-        // Add glitch effect on hover for Dafid SEO text
-        $('.glitch').hover(function(){
-            $(this).addClass('glitch-effect');
-        }, function(){
-            $(this).removeClass('glitch-effect');
-        });
+        // Simple typewriter effect for Dafid SEO
+        const text = "Dafid SEO";
+        let i = 0;
+        const speed = 100;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        
+        // Start typewriter after page loads
+        setTimeout(typeWriter, 1000);
     });
 </script>
 
