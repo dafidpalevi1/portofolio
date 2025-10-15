@@ -496,7 +496,7 @@
             color: var(--text-light);
         }
         
-        /* Portfolio Section */
+        /* Portfolio Section - UPDATED FOR MOBILE */
         .portfolio .box-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -636,7 +636,7 @@
             transform: translateY(-5px);
         }
         
-        /* Responsive Design */
+        /* Responsive Design - UPDATED FOR MOBILE PORTFOLIO */
         @media (max-width: 1200px) {
             html {
                 font-size: 55%;
@@ -692,6 +692,12 @@
             .home h1 .dynamic-text {
                 min-width: 180px;
             }
+            
+            /* Portfolio 2 columns for tablet */
+            .portfolio .box-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
         }
         
         @media (max-width: 768px) {
@@ -717,6 +723,42 @@
             .contact .row {
                 flex-direction: column;
             }
+            
+            /* Portfolio 2 columns for mobile */
+            .portfolio .box-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+            
+            .portfolio .box {
+                margin-bottom: 1rem;
+            }
+            
+            .portfolio .box h2 {
+                font-size: 1.6rem;
+                padding: 0.8rem;
+            }
+            
+            .portfolio .box img {
+                height: 20rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            /* Portfolio 2 columns for small mobile */
+            .portfolio .box-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+            
+            .portfolio .box h2 {
+                font-size: 1.4rem;
+                padding: 0.6rem;
+            }
+            
+            .portfolio .box img {
+                height: 18rem;
+            }
         }
         
         @media (max-width: 450px) {
@@ -736,11 +778,43 @@
                 font-size: 3rem;
             }
             
+            /* Portfolio 2 columns for extra small mobile */
+            .portfolio .box-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .portfolio .box h2 {
+                font-size: 1.3rem;
+                padding: 0.5rem;
+            }
+            
+            .portfolio .box img {
+                height: 16rem;
+            }
+            
             .top {
                 bottom: 2rem;
                 right: 2rem;
                 width: 4.5rem;
                 height: 4.5rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            /* Portfolio 2 columns for very small screens */
+            .portfolio .box-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            
+            .portfolio .box h2 {
+                font-size: 1.2rem;
+                padding: 0.4rem;
+            }
+            
+            .portfolio .box img {
+                height: 14rem;
             }
         }
     </style>
@@ -781,7 +855,7 @@
     <div class="home-content">
         <h3>Hello !!!</h3>
         <h1>
-            <span class="static-text">Saya Adalah:</span>
+            <span class="static-text">Saya</span>
             <span class="dynamic-text" id="typewriter-text"></span>
         </h1>
         <p>Saya adalah seorang programmer yang berasal dari Kota Sibolga, Sumatera Utara. Selamat datang di portofolio saya ini. Kalian dapat melihat semua project yang telah saya kerjakan disini.</p>
@@ -790,7 +864,7 @@
         
         <div class="social-icons">
             <a href="https://www.tiktok.com/@dafidseo" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.instagram.com/dafidseo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/@dafidseo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.youtube.com/@dafidseo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="https://github.com/dafidseo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
@@ -942,14 +1016,14 @@
             <h3 class="title">Info Kontak</h3>
             
             <div class="info">
-                <h3><i class="fas fa-envelope"></i> dafidseo@gmail.com</h3>
+                <h3><i class="fas fa-envelope"></i> brodafid@gmail.com</h3>
                 <h3><i class="fas fa-phone"></i> +6282164889300</h3>
                 <h3><i class="fas fa-map-marker-alt"></i> Sibolga, Indonesia</h3>
             </div>
             
             <div class="social-icons">
                 <a href="https://www.tiktok.com/@dafidseo" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/dafidseo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.instagram.com/@dafidseo" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.youtube.com/@dafidseo" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 <a href="https://github.com/dafidseo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
@@ -1058,5 +1132,3 @@
 
 </body>
 </html>
-
-
